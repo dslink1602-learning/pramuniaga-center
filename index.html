@@ -201,7 +201,7 @@ const apps = {
     name: "WA Center",
     icon: "💬",
     url: "https://script.google.com/macros/s/AKfycbxfAyiIQO_gEz1Bz525F5oaIQBmhBARicB0sjyID01B7SHWi8Q2QHluFyZNtCHPT-pk/exec",
-    mode: "newtab",
+    mode: "iframe",
     zoom: 100
   },
 
@@ -237,16 +237,6 @@ function openApp(app) {
   const selected = apps[app];
   if (!selected) return;
 
-  /*
-    WA Center:
-    Jika aplikasi Google Apps Script menolak iframe,
-    buka langsung di tab baru agar tetap bisa digunakan.
-  */
-  if (selected.mode === "newtab") {
-    window.open(selected.url, "_blank");
-    return;
-  }
-
   currentApp = app;
 
   document.getElementById("homeContent").style.display = "none";
@@ -261,7 +251,7 @@ function openApp(app) {
   const frame = document.getElementById("appFrame");
   const loading = document.getElementById("loading");
 
-  /* Zoom otomatis: Stok 80%, Katalog 50% */
+  /* Zoom otomatis: WA Center 100%, Stok 80%, Katalog 50% */
   const scale = selected.zoom / 100;
 
   frame.style.width = (100 / scale) + "%";
