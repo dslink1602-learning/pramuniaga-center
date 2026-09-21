@@ -216,7 +216,7 @@ const apps = {
   katalog: {
     name: "Katalog",
     icon: "📚",
-    url: "https://script.google.com/macros/s/AKfycbxLhf6MuDjchs06WvWtsD4RCFIvcfr4ztQdCnpyLmF8EJIvrfj8kNNnjWI73VPED3-YA/exec",
+    url: "https://script.google.com/macros/s/AKfycbxLhf6MuDjchs06WvWtsD4RCFIvcfr4ztQdCnpyLmF8EJIvrfj8kNNnjWIx73VPED3-YA/exec",
     mode: "iframe",
     zoom: 50
   }
@@ -254,19 +254,14 @@ function openApp(app) {
 
   document.getElementById("headerIcon").textContent = selected.icon;
   document.getElementById("headerTitle").textContent = selected.name;
-  document.getElementById("appName").textContent =
-    selected.name + " • Zoom " + selected.zoom + "%";
+  document.getElementById("appName").textContent = selected.name;
 
   setActiveMenu(app);
 
   const frame = document.getElementById("appFrame");
   const loading = document.getElementById("loading");
 
-  /*
-    Zoom otomatis:
-    Stok = 80%
-    Katalog = 50%
-  */
+  /* Zoom otomatis: Stok 80%, Katalog 50% */
   const scale = selected.zoom / 100;
 
   frame.style.width = (100 / scale) + "%";
