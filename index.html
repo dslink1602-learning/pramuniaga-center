@@ -202,7 +202,8 @@ const apps = {
     icon: "💬",
     url: "https://script.google.com/macros/s/AKfycbxfAyiIQO_gEz1Bz525F5oaIQBmhBARicB0sjyID01B7SHWi8Q2QHluFyZNtCHPT-pk/exec",
     mode: "iframe",
-    zoom: 50
+    zoom: 100,
+    mobileZoom: 50
   },
 
   stok: {
@@ -210,7 +211,8 @@ const apps = {
     icon: "📦",
     url: "https://dslink1602-learning.github.io/stok-ds-link/",
     mode: "iframe",
-    zoom: 80
+    zoom: 100,
+    mobileZoom: 80
   },
 
   katalog: {
@@ -218,7 +220,8 @@ const apps = {
     icon: "📚",
     url: "https://script.google.com/macros/s/AKfycbxLhf6MuDjchs06WvWtsD4RCFIvcfr4ztQdCnpyLmF8EJIvrfj8kNNnjWIx73VPED3-YA/exec",
     mode: "iframe",
-    zoom: 50
+    zoom: 100,
+    mobileZoom: 50
   }
 };
 
@@ -251,8 +254,10 @@ function openApp(app) {
   const frame = document.getElementById("appFrame");
   const loading = document.getElementById("loading");
 
-  /* Zoom otomatis: WA Center 50%, Stok 80%, Katalog 50% */
-  const scale = selected.zoom / 100;
+  /* PC/Laptop = 100%. Mobile = zoom khusus masing-masing aplikasi. */
+  const isMobile = window.matchMedia("(max-width: 650px)").matches;
+  const zoom = isMobile ? selected.mobileZoom : selected.zoom;
+  const scale = zoom / 100;
 
   frame.style.width = (100 / scale) + "%";
   frame.style.height = (100 / scale) + "%";
